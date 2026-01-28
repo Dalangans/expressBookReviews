@@ -1,8 +1,2 @@
 curl -s localhost:5000/author/Samuel%20Beckett
-[
-    {
-        "author": "Samuel Beckett",
-        "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
-        "reviews": {}
-    }
-]
+[{"author":"Samuel Beckett","title":"Molloy, Malone Dies, The Unnamable, the trilogy","reviews":{}}]

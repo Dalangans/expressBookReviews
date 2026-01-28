@@ -20,14 +20,17 @@ public_users.post("/register", (req,res) => {
   return res.status(404).json({message: "Unable to register user."});
 });
 
-// Task 10: Get the book list using Async/Await with Axios
+// Task 10: Get the book list using Async/Await
 public_users.get('/', async function (req, res) {
+  const getBooks = new Promise((resolve, reject) => {
+    resolve(books);
+  });
+  
   try {
-    const response = await axios.get("http://localhost:5000/books"); // Pastikan endpoint ini ada atau gunakan simulasi
-    res.status(200).json(response.data);
-  } catch (error) {
-    // Jika axios gagal karena endpoint belum ada, gunakan fallback ke local books agar tetap jalan
-    res.status(200).send(JSON.stringify(books, null, 4));
+    const bookList = await getBooks;
+    res.status(200).json(bookList);
+  } catch (err) {
+    res.status(500).json({message: "Error retrieving books"});
   }
 });
 
@@ -43,27 +46,35 @@ public_users.get('/isbn/:isbn', function (req, res) {
   .catch(err => res.status(404).json({message: err}));
 });
   
-// Task 12: Get book details based on author using Async/Await with Axios
+// Task 12: Get book details based on author
 public_users.get('/author/:author', async function (req, res) {
   const author = req.params.author;
+  const getBooksByAuthor = new Promise((resolve, reject) => {
+    const filteredBooks = Object.values(books).filter(b => b.author === author);
+    resolve(filteredBooks);
+  });
+
   try {
-    const response = await axios.get(`http://localhost:5000/`); // Memanggil Task 10
-    const filteredBooks = Object.values(response.data).filter(b => b.author === author);
-    res.status(200).json(filteredBooks);
-  } catch (error) {
-    res.status(500).json({message: "Error fetching by author"});
+    const result = await getBooksByAuthor;
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({message: "Error"});
   }
 });
 
-// Task 13: Get all books based on title using Async/Await with Axios
+// Task 13: Get all books based on title
 public_users.get('/title/:title', async function (req, res) {
   const title = req.params.title;
+  const getBooksByTitle = new Promise((resolve, reject) => {
+    const filteredBooks = Object.values(books).filter(b => b.title === title);
+    resolve(filteredBooks);
+  });
+
   try {
-    const response = await axios.get(`http://localhost:5000/`);
-    const filteredBooks = Object.values(response.data).filter(b => b.title === title);
-    res.status(200).json(filteredBooks);
-  } catch (error) {
-    res.status(500).json({message: "Error fetching by title"});
+    const result = await getBooksByTitle;
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({message: "Error"});
   }
 });
 

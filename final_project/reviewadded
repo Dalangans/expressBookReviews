@@ -1,2 +1,2 @@
-curl -X PUT "localhost:5000/customer/auth/review/1?review=Great%20book"
-{"message":"Review added/updated successfully","reviews":{"nabiel":"Great book"}}
+curl -X PUT "localhost:5000/customer/auth/review/1?review=Great%20book!"
+{"message":"Review added/updated successfully","reviews":{"nabiel":"Great book!"}}
