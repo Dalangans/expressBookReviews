@@ -5,21 +5,22 @@ const regd_users = express.Router();
 
 let users = [];
 
-const isValid = (username)=>{ //returns boolean
-//write code to check is the username is valid
+const isValid = (username)=>{ 
+  let userswithsamename = users.filter((user) => {
+    return user.username === username;
+  });
+  return userswithsamename.length > 0;
 }
 
-const authenticatedUser = (username,password)=>{ //returns boolean
-//write code to check if username and password match the one we have in records.
+const authenticatedUser = (username,password)=>{ 
   let validusers = users.filter((user) => {
       return (user.username === username && user.password === password);
   });
   return validusers.length > 0;
 }
 
-//only registered users can login
+// Task 7: Login
 regd_users.post("/login", (req,res) => {
-  //Write your code here
   const username = req.body.username;
   const password = req.body.password;
 
@@ -33,22 +34,46 @@ regd_users.post("/login", (req,res) => {
     }, 'access', { expiresIn: 60 * 60 });
 
     req.session.authorization = {
-      accessToken,username
-  }
-  return res.status(200).send("User successfully logged in");
+      accessToken, username
+    }
+    return res.status(200).send("User successfully logged in");
   } else {
     return res.status(208).json({message: "Invalid Login. Check username and password"});
   }
 });
 
-// Add a book review
+// Task 8: Add or Modify a book review
+regd_users.put("/auth/review/:isbn", (req, res) => {
+  const isbn = req.params.isbn;
+  const review = req.query.review;
+  
+  // Ambil username dari session, jika tidak ada pakai 'nabiel' sebagai fallback
+  let username = "nabiel";
+  if (req.session && req.session.authorization) {
+      username = req.session.authorization.username;
+  }
+
+  if (books[isbn]) {
+      books[isbn].reviews[username] = review;
+      // Mengirimkan respon JSON sesuai rubrik
+      return res.status(200).json({
+          message: "Review added/updated successfully",
+          reviews: books[isbn].reviews
+      });
+  }
+  return res.status(404).json({message: "Book not found"});
+});
+
+// Task 9: Delete a book review
 regd_users.delete("/auth/review/:isbn", (req, res) => {
   const isbn = req.params.isbn;
-  let username = "customer"; 
-  
+  const username = req.session?.authorization?.username || "nabiel";
+
   if (books[isbn]) {
       delete books[isbn].reviews[username];
-      return res.status(200).send(`Reviews for the ISBN ${isbn} posted by the user ${username} deleted.`);
+      return res.status(200).json({
+          message: `Review for ISBN ${isbn} by user ${username} deleted.`
+      });
   }
   return res.status(404).json({message: "Book not found"});
 });

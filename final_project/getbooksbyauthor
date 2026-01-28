@@ -1,23 +1,8 @@
-curl -s localhost:5000/author/Unknown
+curl -s localhost:5000/author/Samuel%20Beckett
 [
     {
-        "author": "Unknown",
-        "title": "The Epic Of Gilgamesh",
-        "reviews": {}
-    },
-    {
-        "author": "Unknown",
-        "title": "The Book Of Job",
-        "reviews": {}
-    },
-    {
-        "author": "Unknown",
-        "title": "One Thousand and One Nights",
-        "reviews": {}
-    },
-    {
-        "author": "Unknown",
-        "title": "Njál's Saga",
+        "author": "Samuel Beckett",
+        "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
         "reviews": {}
     }
 ]

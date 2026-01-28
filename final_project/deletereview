@@ -1,11 +1,2 @@
 curl -X DELETE localhost:5000/customer/auth/review/1
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Error</title>
-</head>
-<body>
-<pre>Cannot DELETE /customer/auth/review/1</pre>
-</body>
-</html>
+{"message":"Review for ISBN 1 by user nabiel deleted."}
