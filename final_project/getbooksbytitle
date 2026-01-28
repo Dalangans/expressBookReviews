@@ -1,2 +1,12 @@
-curl -s localhost:5000/title/Fairy%20tales
+curl -i -s localhost:5000/title/Fairy%20tales
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 73
+ETag: W/"49-RCjVmasPwYtOR12jLCDrSrLGqmU"
+Set-Cookie: connect.sid=s%3AAxCjKLpZ48uSd67aWppNUeCeGCklDHr0.uo%2BqNPjXkILS%2B0FrgmxNxFzSzUsuAvT1SX2hDNxI3sg; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:06:08 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
 [{"author":"Hans Christian Andersen","title":"Fairy tales","reviews":{}}]

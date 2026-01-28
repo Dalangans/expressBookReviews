@@ -1,2 +1,12 @@
-curl -s localhost:5000/author/Samuel%20Beckett
+curl -i -s localhost:5000/author/Samuel%20Beckett
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 100
+ETag: W/"64-QDCsbz/xOnyJMqK1UI6Uwf9i7sk"
+Set-Cookie: connect.sid=s%3AeEliH36CCtU8n2qe-fvP2_POoKgQEpnJ.vaUqMEcTzEkn8FKvG4%2Bp3z9KxyhLufpxBU0zp%2BMOd%2FE; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:04:52 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
 [{"author":"Samuel Beckett","title":"Molloy, Malone Dies, The Unnamable, the trilogy","reviews":{}}]

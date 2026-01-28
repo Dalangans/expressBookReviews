@@ -1,2 +1,22 @@
-curl -X DELETE localhost:5000/auth/review/1
-{"message":"Review for ISBN 1 by user nabiel deleted."}
+curl -i -X DELETE localhost:5000/customer/auth/review/1
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 164
+Set-Cookie: connect.sid=s%3AO6l8A_9vG7JFh2QjZ8JONby2SwGQWKH9.tUg5mRoZtQIhnIOuvmaz6Fas3LVvMdgiQHIFGTIzELE; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:13:42 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot DELETE /customer/auth/review/1</pre>
+</body>
+</html>

@@ -1,2 +1,12 @@
-curl -s localhost:5000/review/1
+curl -i -s localhost:5000/review/1
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 2
+ETag: W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"
+Set-Cookie: connect.sid=s%3AjtGyNxKFBqk-JFAOZUidDlPGNMTylqn7.A6kGdzfAE0rLoEl6VLmkzjGEipUIL%2FMDYrHlUyyLYYI; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:07:48 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
 {}

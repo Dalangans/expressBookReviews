@@ -1,2 +1,12 @@
-curl -X POST localhost:5000/login -H "Content-Type: application/json" -d "{\"username\": \"nabiel\", \"password\": \"nabiel123\"}"
+curl -i -X POST localhost:5000/login -H "Content-Type: application/json" -d "{\"username\": \"nabiel\", \"password\": \"nabiel123\"}"
+HTTP/1.1 208 Already Reported
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 56
+ETag: W/"38-34zQ2X3BRyuAMZD+qBSslCtLLDQ"
+Set-Cookie: connect.sid=s%3AKXTZ59KRFioUBl6b_9Adz3KSfiIsLxeo.mUgSPKsehn69NuLL8zVKjRj92Tfqfhm9iNms6%2BpYPMA; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:10:57 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
 {"message":"Invalid Login. Check username and password"}

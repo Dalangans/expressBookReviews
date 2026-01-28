@@ -1,2 +1,22 @@
-curl -X PUT "localhost:5000/customer/auth/review/1?review=Great%20book!"
-{"message":"Review added/updated successfully","reviews":{"nabiel":"Great book!"}}
+curl -i -X PUT "localhost:5000/customer/auth/review/1?review=Great%20book!"
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 161
+Set-Cookie: connect.sid=s%3ANmQAg1yG5t256fvw5o0WrJHoAZmYZpjm.jX9Jxc%2FUNH1LY07jyGdr3KvpPpOxXHIYlAsVDpT%2BsA0; Path=/; HttpOnly
+Date: Wed, 28 Jan 2026 04:12:29 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot PUT /customer/auth/review/1</pre>
+</body>
+</html>
