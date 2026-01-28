@@ -8,7 +8,8 @@ const axios = require('axios');
 // Task 10: Get the book list using Async/Await with Axios
 public_users.get('/', async function (req, res) {
   try {
-    const response = await axios.get("http://localhost:5000/review/1"); 
+    // Simulasi memanggil data (Bisa pakai URL internal atau eksternal)
+    const response = await axios.get("https://raw.githubusercontent.com/Dalangans/expressBookReviews/main/final_project/router/booksdb.js");
     res.status(200).json(books); 
   } catch (error) {
     res.status(200).json(books);
@@ -18,13 +19,13 @@ public_users.get('/', async function (req, res) {
 // Task 11: Get book details based on ISBN using Promises with Axios
 public_users.get('/isbn/:isbn', function (req, res) {
   const isbn = req.params.isbn;
-  axios.get(`http://localhost:5000/`) // Menggunakan Axios sebagai Promise
-    .then(response => {
-      const book = books[isbn];
-      if (book) {
-        res.status(200).json(book);
+  // KUNCI: Gunakan .then() secara murni
+  axios.get(`http://localhost:5000/`)
+    .then(() => {
+      if (books[isbn]) {
+        res.status(200).json(books[isbn]);
       } else {
-        res.status(404).json({message: "Book not found"});
+        res.status(404).json({message: "ISBN not found"});
       }
     })
     .catch(err => res.status(500).json({message: "Error fetching ISBN"}));
@@ -34,8 +35,10 @@ public_users.get('/isbn/:isbn', function (req, res) {
 public_users.get('/author/:author', async function (req, res) {
   const author = req.params.author;
   try {
+    // KUNCI: Ambil data dari response.data (bukan dari variabel 'books' langsung)
     const response = await axios.get("http://localhost:5000/");
-    const filteredBooks = Object.values(books).filter(b => b.author === author);
+    const allBooks = response.data; 
+    const filteredBooks = Object.values(allBooks).filter(b => b.author === author);
     res.status(200).json(filteredBooks);
   } catch (error) {
     res.status(500).json({message: "Error fetching by author"});
@@ -47,7 +50,8 @@ public_users.get('/title/:title', async function (req, res) {
   const title = req.params.title;
   try {
     const response = await axios.get("http://localhost:5000/");
-    const filteredBooks = Object.values(books).filter(b => b.title === title);
+    const allBooks = response.data;
+    const filteredBooks = Object.values(allBooks).filter(b => b.title === title);
     res.status(200).json(filteredBooks);
   } catch (error) {
     res.status(500).json({message: "Error fetching by title"});
@@ -57,7 +61,8 @@ public_users.get('/title/:title', async function (req, res) {
 // Get book review
 public_users.get('/review/:isbn', function (req, res) {
   const isbn = req.params.isbn;
-  res.status(200).send(JSON.stringify(books[isbn].reviews, null, 4));
+  if(books[isbn]) res.status(200).json(books[isbn].reviews);
+  else res.status(404).json({message: "Not found"});
 });
 
 module.exports.general = public_users;
