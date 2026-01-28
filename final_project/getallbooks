@@ -1,0 +1,2 @@
+curl -s localhost:5000/
+{"message":"Yet to be implemented"}

@@ -1,0 +1,2 @@
+curl -X POST localhost:5000/customer/login -H "Content-Type: application/json" -d "{\"username\": \"nabiel\", \"password\": \"nabiel123\"}"
+{"message":"Invalid Login. Check username and password"}
